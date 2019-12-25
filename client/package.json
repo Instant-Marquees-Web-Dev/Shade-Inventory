@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reach/router": "^1.2.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -12,11 +13,14 @@
     "react-scripts": "3.3.0"
   },
   "scripts": {
-    "build:style": "tailwind build src/assets/styles/index.css -o src/assets/styles/tailwind.css",
-    "start": "npm run build:style && react-scripts start",
+    "start": "npm run build:styles && react-scripts start ",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:styles": "postcss src/assets/styles/index.css -o src/assets/styles/tailwind.css",
+    "watch:styles": "postcss src/assets/styles/index.css -o src/assets/styles/tailwind.css --watch",
+    "prebuild": "yarn build:styles",
+    "prestart": "yarn build:styles"
   },
   "eslintConfig": {
     "extends": "react-app"

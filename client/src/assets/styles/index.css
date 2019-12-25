@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
+
+.btn {
+  @apply inline-block px-5 py-3 rounded-lg shadow-lg bg-indigo-500 text-white;
+}
+
+.btn:hover {
+  @apply bg-indigo-400;
+}
+
 @tailwind utilities;
