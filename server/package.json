@@ -20,7 +20,6 @@
     "apollo-server-express": "^2.9.13",
     "express": "^4.17.1",
     "graphql": "^14.5.8",
-    "mongodb": "^3.4.0",
-    "mongoose": "^5.8.1"
+    "mongoose": "^5.8.2"
   }
 }
