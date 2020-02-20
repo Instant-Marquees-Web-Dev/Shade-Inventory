@@ -21,13 +21,13 @@ const Navigation = () => {
     };
 
     return (
-        <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} breakpoint="md" collapsedWidth="0">
+        <Sider  collapsed={collapsed} onCollapse={onCollapse} breakpoint="md" collapsedWidth="0" >
         <div className="flex py-4 mt-4 justify-center text-lg">
             <h1 className="text-gray-200">INSTANT MARQUEES</h1>
         </div>
         <div>
             <nav>
-                <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline">
+                <Menu theme="dark"  defaultSelectedKeys={["1"]} mode="inline">
                     <Menu.Item key="1">
                     <Link to="/">
                         <Icon type="appstore" />
@@ -48,14 +48,3 @@ const Navigation = () => {
 }
 
 export default Navigation
-
-
-// <Sider collapsible collapsed={collapsed} onCollapse={onCollapse} breakpoint="md" collapsedWidth="0" zeroWidthTriggerStyle={{
-//         // display: collapsed ? 'inline-block' : 'none'
-//       }}
-//       >
-//         <div className="flex py-4 mb-4 justify-center">
-//           <h1 className="text-gray-200">INSTANT MARQUEES</h1>
-//         </div>
-//         <Navigation/>
-//       </Sider>

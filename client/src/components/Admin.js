@@ -17,8 +17,7 @@ const Admin = () => {
     <Layout style={{ minHeight: "100vh" }}>
       <Navigation/>
       <Layout>
-        <Header style={{ background: "#fff", padding: 0 }} />
-        <Content style={{ margin: "0 16px" }}>
+        <Content style={{ margin: "16px" }}>
           <div style={{ padding: 24, background: "#fff", minHeight: 360 }}>
             <h1>Content Page</h1>
             <Router>
