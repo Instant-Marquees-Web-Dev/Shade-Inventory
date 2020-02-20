@@ -1,5 +1,5 @@
 import React from 'react'
-import {Table, Divider, Tag, Tooltip} from 'antd'
+import {Table, Tooltip, Avatar, } from 'antd'
 import dayjs from 'dayjs'
 
 const {Column} = Table;
@@ -21,40 +21,45 @@ const icon = [
 const data = [
   {
     key: '1',
+    teamLeader: 'Anu',
     job: 'St,Kilda',
     setup: m.format('MMMM D, h:mm A'),
     pullDown: 32,
-    icon: icon.map(i => (
-      <Tooltip title={i.tooltip}>
-        <span>{i.icon}</span>
+    icon: icon.map(({icon,tooltip}) => (
+      <Tooltip key={icon} title={tooltip}>
+      <span className="text-xl sm:text-3xl ">{icon}</span>
       </Tooltip>
     ))
   },{
-    key: '1',
+    key: '2',
+    teamLeader:'Sean D',
     job: 'St,Kilda',
     setup: m.format('MMMM D, h:mm A'),
     pullDown: 32,
-    icon: icon.map(i => (
-      <Tooltip title={i.tooltip}>
-        <span>{i.icon}</span>
+    icon: icon.map(({icon,tooltip}) => (
+      <Tooltip key={icon} title={tooltip}>
+      <span className="text-xl sm:text-3xl ">{icon}</span>
       </Tooltip>
     ))
   },{
-    key: '1',
+    key: '3',
+    teamLeader:'Mattho',
     job: 'St,Kilda',
     setup: m.format('MMMM D, h:mm A'),
     pullDown: 32,
-    icon: icon.map(i => (
-      <Tooltip title={i.tooltip}>
-        <span>{i.icon}</span>
+    icon: icon.map(({icon,tooltip}) => (
+      <Tooltip key={icon} title={tooltip}>
+        <span className="text-xl sm:text-3xl ">{icon}</span>
       </Tooltip>
     ))
   },
 ];
 
+
 export const JobTable = () => {
   return (
     <Table dataSource={data}>
+      <Column title="Team Leader" key="teamLeader" render={(data) => <Avatar>{data.teamLeader}</Avatar>} className="w-1/6" />
       <Column title="Job" dataIndex="job" key="Job"/>
       <Column title="Setup" dataIndex="setup" key="Start"/>
       <Column title="PullDown" dataIndex="pullDown" key="End"/>
