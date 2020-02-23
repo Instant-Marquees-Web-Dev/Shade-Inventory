@@ -1,6 +1,7 @@
+/* purgecss start ignore */
 @tailwind base;
 @tailwind components;
-
+/* purgecss end ignore */
 .btn {
   @apply inline-block px-5 py-3 rounded-lg shadow-lg bg-indigo-500 text-white;
 }
