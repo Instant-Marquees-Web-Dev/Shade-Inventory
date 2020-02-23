@@ -13,15 +13,14 @@ const {
 } = Layout;
 
 const Navigation = () => {
-    const [collapsed, setCollapsed] = useState(false);
+    const [collapsed, setCollapsed] = useState(true);
 
-    const onCollapse = collapsed => {
-        console.log(collapsed);
-        setCollapsed(collapsed);
+    const onCollapse = () => {
+        setCollapsed(!collapsed)
     };
 
     return (
-        <Sider  collapsed={collapsed} onCollapse={onCollapse} breakpoint="md" collapsedWidth="0" >
+        <Sider collapsed={collapsed} onClick={onCollapse} collapsible breakpoint="md" collapsedWidth="0" >
         <div className="flex py-4 mt-4 justify-center text-lg">
             <h1 className="text-gray-200">INSTANT MARQUEES</h1>
         </div>

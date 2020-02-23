@@ -58,12 +58,15 @@ const data = [
 
 export const JobTable = () => {
   return (
-    <Table dataSource={data}>
+    <>
+    <h1 className="text-gray-900 font-bold text-xl mb-2">Job Overview</h1>
+    <Table dataSource={data} className="min-w-64 overflow-auto">
       <Column title="Team Leader" key="teamLeader" render={(data) => <Avatar>{data.teamLeader}</Avatar>} className="w-1/6" />
       <Column title="Job" dataIndex="job" key="Job"/>
       <Column title="Setup" dataIndex="setup" key="Start"/>
       <Column title="PullDown" dataIndex="pullDown" key="End"/>
       <Column title="Icon" dataIndex="icon" key="Icon"/>
     </Table>
+    </>
   )
 }
