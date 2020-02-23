@@ -7,7 +7,7 @@ import Structure from './Structure';
 import Dashboard from './Dashboard';
 import Navigation from './Navigation';
 
-const { Header, Footer, Content } = Layout;
+const { Footer, Content } = Layout;
 
 const Admin = () => {
   const date = new Date();
@@ -19,7 +19,6 @@ const Admin = () => {
       <Layout>
         <Content style={{ margin: "16px" }}>
           <div style={{ padding: 24, background: "#fff", minHeight: 360 }}>
-            <h1>Content Page</h1>
             <Router>
               <Dashboard path="/" />
               <Structure path="structure" />
