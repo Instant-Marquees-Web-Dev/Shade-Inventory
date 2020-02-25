@@ -1,9 +1,21 @@
-import React from 'react';
-import {Card, Icon, Radio } from 'antd'
+import React, {useState} from 'react';
+import {Card, Icon, Radio, Typography } from 'antd'
+import structureData from '../utils/structureData'
 
 const {Meta} = Card
+const { Title, Text } = Typography
+
+// Exaple Total data
+const exampleData = {
+    legs: 22,
+    gable: 10
+}
 
 const Structure = () => {
+    const [size, setSize] = useState(3)
+    const [type, setType] = useState("")
+    const [data, setData] = useState(exampleData)
+    const {legs, gable} = data
     return (
         <>
             <h1 className="text-gray-900 font-bold text-xl mb-2">Structures</h1>
@@ -14,13 +26,35 @@ const Structure = () => {
                     actions={[
                     <Radio.Group
                         
-                        defaultValue="3" 
+                        defaultValue="three" 
                         buttonStyle="solid"
-                        onChange={(e) => console.log(e.target.value)}
+                        onChange={(e) => {
+                            const value = e.target.value
+                            const USEDLEGS = structureData.size[value].legs
+                            // Do nothing if not enough legs
+                            if(legs < USEDLEGS){
+                                return
+                            }
+                            else{
+                            // Subtract legs according to structure size
+                            switch(value) {
+                                case "three":
+                                    setData({...data, legs: legs - USEDLEGS})
+                                    break;
+                                case "six":
+                                    setData({...data, legs: legs - USEDLEGS})
+                                    break;
+                                case  "nine":
+                                    setData({...data, legs: legs - USEDLEGS})
+                                    break;
+                                break;
+                            }
+                            }
+                        }}
                     >
-                        <Radio.Button value="3">3 Metres</Radio.Button>
-                        <Radio.Button value="6">6 Metres</Radio.Button>
-                        <Radio.Button value="9">9 Metres</Radio.Button>
+                        <Radio.Button value="three">3 Metres</Radio.Button>
+                        <Radio.Button value="six">6 Metres</Radio.Button>
+                        <Radio.Button value="nine">9 Metres</Radio.Button>
                     </Radio.Group>
                     ]}
                 >
@@ -35,7 +69,6 @@ const Structure = () => {
                     actions={[
                     <Radio.Group
                     className="align-middle"
-                        
                         defaultValue="apex" 
                         buttonStyle="solid"
                         onChange={(e) => console.log(e.target.value)}
@@ -62,6 +95,10 @@ const Structure = () => {
                     description="This is the description"
                     />
             </Card>
+            </div>
+            <div className=" w-full min-w-full text-center mt-4 bg-gray-100">
+            <Title level={2} >REMAINING LEGS</Title>
+            <Text>Legs: {legs}</Text>
             </div>
         </>
     )
