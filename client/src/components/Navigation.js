@@ -7,7 +7,7 @@ import {
     Menu,
 } from "antd";
 
-import {BankTwoTone} from '@ant-design/icons';
+import { BankTwoTone, FileTextOutlined } from '@ant-design/icons';
 
 const {
     Sider
@@ -35,18 +35,6 @@ const Navigation = () => {
                 defaultSelectedKeys={currentKey} 
                 defaultOpenKeys={['structure']}
                 mode="inline">
-                    {/* <Menu.Item key="1">
-                    <Link to="/">
-                        <Icon type="appstore" />
-                        <span>Dashboard</span>
-                    </Link>
-                    </Menu.Item> */}
-                    {/* <Menu.Item key="structure">
-                        <Link to="/">
-                        <BankTwoTone twoToneColor="#eee" style={{fontSize:'14px', position:'relative', top: '-4px', left:'4px'}}/>
-                        <span>Structure</span>
-                        </Link>
-                    </Menu.Item> */}
                     <SubMenu 
                     key="structure"
                     title=
@@ -67,6 +55,15 @@ const Navigation = () => {
                         </Link>
                         </Menu.Item>
                     </SubMenu>
+
+                    <Menu.Item
+                    key="inventory"
+                    >
+                    <Link to="/inventory">
+                        <FileTextOutlined twoToneColor="#eee" style={{fontSize:'14px', position:'relative', top: '-4px', left:'4px'}}/>
+                        <span className="text-gray-200">Inventory</span>
+                    </Link>
+                    </Menu.Item>
                 </Menu>
             </nav>
         </div>

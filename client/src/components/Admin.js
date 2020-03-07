@@ -7,6 +7,7 @@ import Dashboard from './Dashboard';
 import Navigation from './Navigation';
 import ActiveJobs from "./ActiveJobs";
 import AddStructure from "./AddStructure";
+import Inventory from './Inventory';
 
 const { Footer, Content } = Layout;
 
@@ -24,6 +25,7 @@ const Admin = () => {
               <Dashboard path="/dashboard" />
               <ActiveJobs path="/activeJobs"/>
               <AddStructure path="/addStructure"/>
+              <Inventory path="/inventory"/>
             </Router>
           </div>
         </Content>
