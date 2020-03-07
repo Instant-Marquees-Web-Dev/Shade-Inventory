@@ -1,7 +1,15 @@
+// FIXME: Incomplete structure data structer!!!
 const structureData = {
   size: {
     three: {
       name: "3 Metres",
+      x3: {
+        bananas: 4,
+
+      },
+      x6: {
+
+      },
       legs: 4,
     },
     six: {
@@ -15,6 +23,14 @@ const structureData = {
   },
   type: {
     
+  },
+  job:{
+    name: 'ST',
+    icon: ['struc','table'],
+    stru: {
+      class: 3,
+      size: 18
+    },
   }
 }
 

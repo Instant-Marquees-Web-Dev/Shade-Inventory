@@ -5,20 +5,23 @@ import {
 import {
     Layout,
     Menu,
-    Icon
 } from "antd";
+
+import {BankTwoTone} from '@ant-design/icons';
 
 const {
     Sider
 } = Layout;
 
+const { SubMenu } = Menu
+
 const Navigation = () => {
-    // const [collapsed, setCollapsed] = useState(false);
+    const [currentKey, setCurrentKey] = useState('structure')
 
-    // const onCollapse = () => {
-    //     setCollapsed(!collapsed)
-    // };
-
+    const handleClick = e => {
+        console.log('click')
+        console.log(e)
+    }
     return (
         <Sider  collapsible breakpoint="md" collapsedWidth="0" >
         <div className="flex py-4 mt-4 justify-center text-lg">
@@ -26,19 +29,44 @@ const Navigation = () => {
         </div>
         <div>
             <nav>
-                <Menu theme="dark"  defaultSelectedKeys={["1"]} mode="inline">
-                    <Menu.Item key="1">
+                <Menu 
+                theme="dark" 
+                onClick={handleClick}  
+                defaultSelectedKeys={currentKey} 
+                defaultOpenKeys={['structure']}
+                mode="inline">
+                    {/* <Menu.Item key="1">
                     <Link to="/">
                         <Icon type="appstore" />
                         <span>Dashboard</span>
                     </Link>
-                    </Menu.Item>
-                    <Menu.Item key="2">
-                        <Link to="structure">
-                        <Icon type="bank" />
+                    </Menu.Item> */}
+                    {/* <Menu.Item key="structure">
+                        <Link to="/">
+                        <BankTwoTone twoToneColor="#eee" style={{fontSize:'14px', position:'relative', top: '-4px', left:'4px'}}/>
                         <span>Structure</span>
                         </Link>
-                    </Menu.Item>
+                    </Menu.Item> */}
+                    <SubMenu 
+                    key="structure"
+                    title=
+                    {
+                        <span>
+                        <BankTwoTone twoToneColor="#eee" style={{fontSize:'14px', position:'relative', top: '-4px', left:'4px'}}/>
+                        <span>Structure</span>
+                        </span>
+                    }>
+                        <Menu.Item key="activeJobs">
+                        <Link to="/activeJobs">
+                            Active Jobs
+                        </Link>
+                        </Menu.Item>
+                        <Menu.Item key="addStructure">
+                        <Link to="/addStructure">
+                            Add Structure
+                        </Link>
+                        </Menu.Item>
+                    </SubMenu>
                 </Menu>
             </nav>
         </div>

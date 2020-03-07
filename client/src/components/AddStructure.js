@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Card, Icon, Radio, Typography } from 'antd'
+import {Card, Radio, Typography } from 'antd'
 import structureData from '../utils/structureData'
 
 const {Meta} = Card
@@ -11,7 +11,7 @@ const exampleData = {
     gable: 10
 }
 
-const Structure = () => {
+const AddStructure = () => {
     const [size, setSize] = useState(3)
     const [type, setType] = useState("")
     const [data, setData] = useState(exampleData)
@@ -86,8 +86,8 @@ const Structure = () => {
             <Card
                     hoverable   
                     actions={[
-                    <Icon type="setting" key="setting" />,
-                    <Icon type="edit" key="edit" />,
+                    // <Icon type="setting" key="setting" />,
+                    // <Icon type="edit" key="edit" />,
                     ]}
                 >
                     <Meta
@@ -104,4 +104,4 @@ const Structure = () => {
     )
 }
 
-export default Structure
+export default AddStructure

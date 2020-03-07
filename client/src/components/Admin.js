@@ -3,9 +3,10 @@ import {
   Router
 } from "@reach/router";
 import { Layout, } from "antd";
-import Structure from './Structure';
 import Dashboard from './Dashboard';
 import Navigation from './Navigation';
+import ActiveJobs from "./ActiveJobs";
+import AddStructure from "./AddStructure";
 
 const { Footer, Content } = Layout;
 
@@ -20,8 +21,9 @@ const Admin = () => {
         <Content style={{ margin: "16px" }}>
           <div style={{ padding: 24, background: "#fff", minHeight: 360 }}>
             <Router>
-              <Dashboard path="/" />
-              <Structure path="structure" />
+              <Dashboard path="/dashboard" />
+              <ActiveJobs path="/activeJobs"/>
+              <AddStructure path="/addStructure"/>
             </Router>
           </div>
         </Content>
