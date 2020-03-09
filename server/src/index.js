@@ -1,8 +1,8 @@
 import { ApolloServer, gql } from "apollo-server-express";
 import express from "express";
 import mongoose from "mongoose";
-import { typeDefs } from "./typeDefs";
-import { resolvers } from "./resolvers";
+import typeDefs from "./typeDefs";
+import resolvers from "./resolvers";
 
 const startServer = async () => {
   const app = express();
@@ -13,11 +13,12 @@ const startServer = async () => {
   });
 
   server.applyMiddleware({ app });
-  
+
   try {
     await mongoose.connect(
       "mongodb+srv://shade:shade@cluster0-gzrz8.mongodb.net/test?retryWrites=true&w=majority",
-      { useNewUrlParser: true }
+      { useNewUrlParser: true, useUnifiedTopology: true },
+      console.log("Connected to MongoDB")
     );
   } catch (err) {
     console.log(err);
