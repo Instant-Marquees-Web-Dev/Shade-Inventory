@@ -23,4 +23,4 @@ const activeJobSchema = new Schema({
   }
 });
 
-export const ActiveJob = mongoose.model("ActiveJob", activeJobSchema);
+export default mongoose.model("ActiveJob", activeJobSchema);
