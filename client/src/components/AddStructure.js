@@ -12,8 +12,8 @@ const exampleData = {
 }
 
 const AddStructure = () => {
-    const [size, setSize] = useState(3)
-    const [type, setType] = useState("")
+    // const [size, setSize] = useState(3)
+    // const [type, setType] = useState("")
     const [data, setData] = useState(exampleData)
     const {legs, gable} = data
     return (
