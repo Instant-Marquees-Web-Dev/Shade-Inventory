@@ -1,15 +1,17 @@
 import { gql } from "apollo-server-express";
 
 export default gql`
-  extend type Query {
-    getJob(id: ID!): ActiveJob
-    getActiveJobs: [ActiveJob!]!
-  }
-
   type Structure {
     size: Int!
     length: Int!
-    type: Int!
+    structureType: String!
+    Notes: String!
+  }
+
+  input StructureInput {
+    size: Int!
+    length: Int!
+    structureType: String!
     Notes: String!
   }
 
@@ -19,6 +21,21 @@ export default gql`
     setupDate: String!
     pulldownDate: String!
     teamLeader: String!
-    structure: [Structure]
+    structures: [Structure]
+  }
+
+  extend type Query {
+    getJob(id: ID!): ActiveJob
+    getActiveJobs: [ActiveJob!]!
+  }
+
+  extend type Mutation {
+    addJob(
+      suburb: String!
+      setupDate: String!
+      pulldownDate: String!
+      teamLeader: String!
+      structures: [StructureInput!]!
+    ): ActiveJob
   }
 `;

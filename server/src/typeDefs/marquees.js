@@ -4,7 +4,7 @@ export default gql`
   type Marquees {
     id: ID!
     size: Int!
-    type: String!
+    marqueeType: String!
     color: String!
     quality: String!
     count: Int!

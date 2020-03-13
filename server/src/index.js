@@ -18,7 +18,7 @@ const startServer = async () => {
     await mongoose.connect(
       "mongodb+srv://shade:shade@cluster0-gzrz8.mongodb.net/test?retryWrites=true&w=majority",
       { useNewUrlParser: true, useUnifiedTopology: true },
-      console.log("Connected to MongoDB")
+      console.log("Connected to shade@cluster0-gzrz8.mongodb.net")
     );
   } catch (err) {
     console.log(err);
