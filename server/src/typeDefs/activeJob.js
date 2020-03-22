@@ -38,4 +38,8 @@ export default gql`
       structures: [StructureInput!]!
     ): ActiveJob
   }
+
+  extend type Mutation {
+    editSuburb(suburb: String!): ActiveJob
+  }
 `;
