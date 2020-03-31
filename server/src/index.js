@@ -3,10 +3,11 @@ import express from "express";
 import mongoose from "mongoose";
 import typeDefs from "./typeDefs";
 import resolvers from "./resolvers";
+import cors from "cors";
 
 const startServer = async () => {
   const app = express();
-
+  app.use(cors());
   const server = new ApolloServer({
     typeDefs,
     resolvers

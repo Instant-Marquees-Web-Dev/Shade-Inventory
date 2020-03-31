@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 
 const activeJobSchema = new Schema({
   suburb: String, //Job site
+  address: String, //Job Address
   setupDate: Date, //Job start date
   pulldownDate: Date, //Job end dtae
   teamLeader: String, //Supervisor during setup

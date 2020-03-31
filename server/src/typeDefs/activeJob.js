@@ -18,6 +18,7 @@ export default gql`
   type ActiveJob {
     id: ID!
     suburb: String!
+    address: String!
     setupDate: String!
     pulldownDate: String!
     teamLeader: String!
@@ -32,6 +33,7 @@ export default gql`
   extend type Mutation {
     addJob(
       suburb: String!
+      address: String!
       setupDate: String!
       pulldownDate: String!
       teamLeader: String!
@@ -40,6 +42,18 @@ export default gql`
   }
 
   extend type Mutation {
-    editSuburb(suburb: String!): ActiveJob
+    editSuburb(id: ID!, suburb: String!): ActiveJob
+  }
+
+  extend type Mutation {
+    editSetupDate(id: ID!, setupDate: String!): ActiveJob
+  }
+
+  extend type Mutation {
+    editPulldownDate(id: ID!, pulldownDate: String!): ActiveJob
+  }
+
+  extend type Mutation {
+    editTeamLeader(id: ID!, teamLeader: String!): ActiveJob
   }
 `;
