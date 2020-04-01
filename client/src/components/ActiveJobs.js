@@ -1,9 +1,10 @@
 import React from "react";
-import { Avatar } from "antd";
-import { RightOutlined } from "@ant-design/icons";
+import { RightOutlined,   } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
+
+import LoadingActiveJob from '../elements/LoadingActiveJob'
 
 const dates = [
   dayjs("05/02/69 6:0 AM", "MM/DD/YY H:mm:ss A").format("MMMM D, h:mm A"),
@@ -52,11 +53,26 @@ const datas = [
   }
 ];
 console.log(datas);
+
+// const listData = [];
+// for (let i = 0; i < 3; i++) {
+//   listData.push({
+//     href: 'http://ant.design',
+//     title: `ant design part ${i}`,
+//     avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+//     description:
+//       'Ant Design, a design language for background applications, is refined by Ant UED Team.',
+//     content:
+//       'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+//   });
+// }
+
+
 const ActiveJobs = () => {
   const { loading, error, data } = useQuery(JobData);
 
   if (loading) {
-    return <p>Loading..</p>;
+    return  <LoadingActiveJob loading={loading}/>
   }
 
   console.log(data.getActiveJobs);
