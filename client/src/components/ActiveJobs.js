@@ -1,10 +1,11 @@
-import React from "react";
-import { RightOutlined,   } from "@ant-design/icons";
+import React, { useState } from "react";
+import { RightOutlined} from "@ant-design/icons";
 import dayjs from "dayjs";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 
 import LoadingActiveJob from '../elements/LoadingActiveJob'
+import ModalActiveJobs from "../elements/ModalActiveJobs";
 
 const dates = [
   dayjs("05/02/69 6:0 AM", "MM/DD/YY H:mm:ss A").format("MMMM D, h:mm A"),
@@ -30,55 +31,18 @@ const JobData = gql`
   }
 `;
 
-const datas = [
-  {
-    id: 1,
-    teamLeader: "Anu",
-    phoneNo: 9123123123,
-    job: "Dandenong,",
-    address: "8 Steven St",
-    startDate: dates[0],
-    endDate: dates[1],
-    size: "3 x 6"
-  },
-  {
-    id: 2,
-    teamLeader: "Sean D",
-    phoneNo: 8123123123,
-    job: "Pakenham,",
-    address: "8 Oxford St",
-    startDate: dates[0],
-    endDate: dates[1],
-    size: "3 x 9"
-  }
-];
-console.log(datas);
-
-// const listData = [];
-// for (let i = 0; i < 3; i++) {
-//   listData.push({
-//     href: 'http://ant.design',
-//     title: `ant design part ${i}`,
-//     avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-//     description:
-//       'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-//     content:
-//       'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-//   });
-// }
-
-
 const ActiveJobs = () => {
-  const { loading, error, data } = useQuery(JobData);
-
-  if (loading) {
-    return  <LoadingActiveJob loading={loading}/>
-  }
-
-  console.log(data.getActiveJobs);
-  const Jobs = data.getActiveJobs;
-
-  return (
+  const [modal, setModal] = useState(false)
+  const [job, setJob] = useState(0)
+  const { loading, error, data } = useQuery(JobData)
+  
+    
+    if (loading) {
+      return  <LoadingActiveJob loading={loading}/>
+    }
+    
+    const Jobs = data.getActiveJobs;
+    return (
     <>
       <div className='flex justify-center mb-4'>
         <div className='-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 w-11/12'>
@@ -118,8 +82,8 @@ const ActiveJobs = () => {
                     address,
                     setupDate,
                     pulldownDate,
-                    size
-                  }) => (
+                    structures
+                  },index) => (
                     <tr key={id}>
                       <td className='px-6 py-4 whitespace-no-wrap border-b border-gray-200'>
                         <div className='flex '>
@@ -153,30 +117,45 @@ const ActiveJobs = () => {
                       </td>
                       <td className='px-6 py-4 whitespace-no-wrap border-b border-gray-200'>
                         <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800'>
-                          {setupDate}
+                          {dayjs(setupDate).format("MMMM D, h:mm A")}
                         </span>
                       </td>
                       <td className='px-6 py-4 whitespace-no-wrap border-b border-gray-200'>
                         <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800'>
-                          {pulldownDate}
+                          {dayjs(pulldownDate).format("MMMM D, h:mm A")}
                         </span>
                       </td>
                       <td className='px-6 py-4 whitespace-no-wrap border-b border-gray-200'>
                         <div className='text-sm leading-5 text-gray-900'>
-                          {size}
+                          {`${structures[0].size} x ${structures[0].length}`}
                         </div>
                       </td>
                       <td className='px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium'>
                         <a
-                          href='#'
                           className='text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline'
+                          onClick={() => {
+                            setJob(index)
+                            setModal(true)
+                          }}
                         >
                           <RightOutlined />
                         </a>
                       </td>
+                      
                     </tr>
                   )
                 )}
+                {  /* Show Model */
+                          modal ? 
+                          <ModalActiveJobs 
+                            modal={modal}
+                            data = {Jobs[job]}
+                            handleOk={() => setModal(!modal)} 
+                            handleCancel={() => setModal(!modal)} s
+                          />
+                          :
+                          null
+                        }
               </tbody>
             </table>
           </div>
