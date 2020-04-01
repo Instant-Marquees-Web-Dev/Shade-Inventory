@@ -4,10 +4,10 @@ import { UserInputError } from "apollo-server-express";
 
 export default {
   Query: {
-    getActiveJobs: (root, args, context, info) => {
+    getActiveJobs: (root, args, context) => {
       return ActiveJob.find({});
     },
-    getJob: (root, { id }, context, info) => {
+    getJob: (root, { id }, context) => {
       if (!mongoose.Types.ObjectId.isValid(id)) {
         throw new UserInputError("Not a valid Job ID");
       }
@@ -16,7 +16,7 @@ export default {
   },
 
   Mutation: {
-    addJob: async (root, args, context, info) => {
+    addJob: async (root, args, context) => {
       const activeJob = await ActiveJob.create(args);
       if (!activeJob) {
         throw new Error("Error: Couldnt create new MongoDB document");
@@ -24,7 +24,7 @@ export default {
       return activeJob;
     },
 
-    editSuburb: async (root, args, context, info) => {
+    editSuburb: async (root, args, context) => {
       const updatedJob = await ActiveJob.findByIdAndUpdate(args.id, args);
       if (!updatedJob) {
         throw new Error("Error: Updated Job");
@@ -32,7 +32,7 @@ export default {
       return updatedJob;
     },
 
-    editSetupDate: async (root, args, context, info) => {
+    editSetupDate: async (root, args, context) => {
       const updatedJob = await ActiveJob.findByIdAndUpdate(args.id, args);
       if (!updatedJob) {
         throw new Error("Error: Updated Job");
@@ -40,7 +40,7 @@ export default {
       return updatedJob;
     },
 
-    editPulldownDate: async (root, args, context, info) => {
+    editPulldownDate: async (root, args, context) => {
       const updatedJob = await ActiveJob.findByIdAndUpdate(args.id, args);
       if (!updatedJob) {
         throw new Error("Error: Updated Job");
@@ -48,7 +48,7 @@ export default {
       return updatedJob;
     },
 
-    editTeamLeader: async (root, args, context, info) => {
+    editTeamLeader: async (root, args, context) => {
       const updatedJob = await ActiveJob.findByIdAndUpdate(args.id, args);
       if (!updatedJob) {
         throw new Error("Error: Updated Job");
