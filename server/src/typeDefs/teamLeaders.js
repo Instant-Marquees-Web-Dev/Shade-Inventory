@@ -9,6 +9,10 @@ export default gql`
   extend type Query {
     getPhoneNumber(name: String!): String!
   }
+
+  extend type Query {
+    getAllTeamLeaders: [TeamLeader!]!
+  }
   extend type Mutation {
     addTeamLeader(name: String!, phone: String!): TeamLeader
   }

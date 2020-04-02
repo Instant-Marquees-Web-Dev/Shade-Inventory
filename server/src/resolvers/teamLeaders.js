@@ -3,15 +3,19 @@ import TeamLeader from "../models/TeamLeaders";
 
 export default {
   Query: {
-    getPhoneNumber: async (root, args, context) => {
+    getPhoneNumber: async (root, args, context, info) => {
       const teamLeader = await TeamLeader.findOne(args);
 
       return teamLeader.phone;
+    },
+
+    getAllTeamLeaders: (root, args, context, info) => {
+      return TeamLeader.find({});
     }
   },
 
   Mutation: {
-    addTeamLeader: async (root, args, context) => {
+    addTeamLeader: async (root, args, context, info) => {
       const teamLeader = await TeamLeader.create(args);
       if (!teamLeader) {
         throw new Error("Error: Couldnt create new MongoDB document");
