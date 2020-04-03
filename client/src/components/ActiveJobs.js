@@ -41,6 +41,10 @@ const ActiveJobs = () => {
     return <LoadingActiveJob loading={loading} />;
   }
 
+  if (error) {
+    return <h1>Error loading active dashboad</h1>
+  }
+
   const Jobs = data.getActiveJobs;
   const phoneNumbers = data.getAllTeamLeaders;
 
