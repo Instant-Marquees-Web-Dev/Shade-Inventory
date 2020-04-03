@@ -7,7 +7,7 @@ import {
     Menu,
 } from "antd";
 
-import { BankTwoTone, FileTextOutlined } from '@ant-design/icons';
+import { BankTwoTone, FileTextOutlined, UserAddOutlined } from '@ant-design/icons';
 
 const {
     Sider
@@ -16,12 +16,8 @@ const {
 const { SubMenu } = Menu
 
 const Navigation = () => {
-    const [currentKey, setCurrentKey] = useState('structure')
+    const [currentKey] = useState('structure')
 
-    const handleClick = e => {
-        console.log('click')
-        console.log(e)
-    }
     return (
         <Sider  collapsible breakpoint="md" collapsedWidth="0" >
         <div className="flex py-4 mt-4 justify-center text-lg">
@@ -31,7 +27,6 @@ const Navigation = () => {
             <nav>
                 <Menu 
                 theme="dark" 
-                onClick={handleClick}  
                 defaultSelectedKeys={currentKey} 
                 defaultOpenKeys={['structure']}
                 mode="inline">
@@ -63,6 +58,14 @@ const Navigation = () => {
                         <FileTextOutlined twoToneColor="#eee" style={{fontSize:'14px', position:'relative', top: '-4px', left:'4px'}}/>
                         <span className="text-gray-200">Inventory</span>
                     </Link>
+                    </Menu.Item>
+                    <Menu.Item
+                        key="teamLeader"
+                    >
+                        <Link to="/teamLeader">
+                        <UserAddOutlined twoToneColor="#eee" style={{fontSize:'14px', position:'relative', top: '-4px', left:'4px'}}/>
+                            <span className="text-gray-200">Team Leaders</span>
+                        </Link>
                     </Menu.Item>
                 </Menu>
             </nav>
