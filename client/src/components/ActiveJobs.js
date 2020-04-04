@@ -153,7 +153,7 @@ const ActiveJobs = () => {
                           className='text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline'
                           onClick={() => {
                             setJob(index);
-                            setModal(true);
+                            setModal(modalState => !modalState);
                           }}
                         >
                           <RightOutlined />

@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
+import { useModal } from '../hooks/useModal'
 import { Avatar } from 'antd'
 import { useMutation } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
 import { RightOutlined } from "@ant-design/icons";
 import TeamLeaderModal from './TeamLeaderModal';
 
-const newTeamLeader = {
+const initialState = {
   name: '',
   phone: '',
   email: ''
@@ -21,8 +22,11 @@ mutation addTeamLeader($name: String!, $phone: String!){
 `
 
 const TeamLeaderTable = ({teamleader, ALL_TEAMLEADER}) => {
-  const [modal, setModal] = useState(false)
-  const [teamLeader, setTeamLeader] = useState(newTeamLeader)
+  const [isModalOpen, toggleModal] = useModal(false)
+  const [teamLeader, setTeamLeader] = useState(initialState)
+
+  const { name, phone, email } = teamLeader
+
   const [addTeamLeader] = useMutation(
     ADD_TEAMLEADER,
     {
@@ -35,23 +39,33 @@ const TeamLeaderTable = ({teamleader, ALL_TEAMLEADER}) => {
         })
       }
     }
-    )
+  )
+
   const handleOk = () => {
-    addTeamLeader({
-        variables: {name:teamLeader.name, phone:teamLeader.phone},
-        //  simulate the results of a mutation 
-        //  and update the UI even before receiving a response from the server
-        optimisticResponse: {  
-            __typename: "Mutation",
-            addTeamLeader: {
-                // id: "2381094810931",
-                name: teamLeader.name,
-                phone: teamLeader.phone,
-                __typename: "TeamLeader"
+    const VALIDATE_INPUT = name.trim().length > 1 && phone.trim().length > 1
+    if(VALIDATE_INPUT){
+      addTeamLeader({
+          variables: { name, phone },
+          //  simulate the results of a mutation 
+          //  and update the UI even before receiving a response from the server
+          optimisticResponse: {  
+              __typename: "Mutation",
+              addTeamLeader: {
+                  // id: "2381094810931",
+                  name,
+                  phone,
+                  __typename: "TeamLeader"
+                }
               }
-            }
-          })
-    setModal(!modal)
+      })
+    }
+    setTeamLeader(initialState)
+    toggleModal()
+  }
+
+  const handleCancel = () => {
+    setTeamLeader(initialState)
+    toggleModal()
   }
 
   return (
@@ -63,7 +77,7 @@ const TeamLeaderTable = ({teamleader, ALL_TEAMLEADER}) => {
             <button 
               type="button" 
               className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs leading-4 font-medium rounded text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150"
-              onClick={() => setModal(!modal)}  
+              onClick={toggleModal}  
             >
               Add Teamleader
             </button>
@@ -110,13 +124,13 @@ const TeamLeaderTable = ({teamleader, ALL_TEAMLEADER}) => {
                       </tr>
                       ))}
                       {/* Show Modal */
-                        modal ? (
+                        isModalOpen ? (
                           <TeamLeaderModal
-                            modal={modal}
+                            modal={isModalOpen}
                             teamLeader={teamLeader}
                             setTeamLeader={setTeamLeader}
                             handleOk={handleOk}
-                            handleCancel={() => setModal(!modal)}
+                            handleCancel={handleCancel}
                           />
                         ) : null
                       }
