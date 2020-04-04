@@ -27,7 +27,7 @@ const TeamLeader = () => {
   }
   return (
     <>
-    <TeamLeaderTable teamleader={data.getAllTeamLeaders}/>
+    <TeamLeaderTable teamleader={data.getAllTeamLeaders} ALL_TEAMLEADER={ALL_TEAMLEADER}/>
     </>
   )
 }

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { RightOutlined } from "@ant-design/icons";
+import { Avatar } from 'antd'
 import dayjs from "dayjs";
 import { useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
@@ -100,11 +101,12 @@ const ActiveJobs = () => {
                       <td className='px-6 py-4 whitespace-no-wrap border-b border-gray-200'>
                         <div className='flex '>
                           <div className='flex-shrink-0 h-10 w-10'>
-                            <img
+                            {/* <img
                               className='h-10 w-10 rounded-full'
                               src='https://images.unsplash.com/photo-1532910404247-7ee9488d7292?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
                               alt=''
-                            />
+                            /> */}
+                            <Avatar>{teamLeader[0]}</Avatar>
                           </div>
                           <div className='ml-4'>
                             <div className='text-sm leading-5 font-medium text-gray-900'>
@@ -161,15 +163,16 @@ const ActiveJobs = () => {
                   )
                 )}
                 {/* Show Model */
-                modal ? (
-                  <ModalActiveJobs
-                    modal={modal}
-                    data={Jobs[job]}
-                    phone={phoneDirectory}
-                    handleOk={() => setModal(!modal)}
-                    handleCancel={() => setModal(!modal)}
-                  />
-                ) : null}
+                  modal ? (
+                    <ModalActiveJobs
+                      modal={modal}
+                      data={Jobs[job]}
+                      phone={phoneDirectory}
+                      handleOk={() => setModal(!modal)}
+                      handleCancel={() => setModal(!modal)}
+                    />
+                  ) : null
+                }
               </tbody>
             </table>
           </div>
