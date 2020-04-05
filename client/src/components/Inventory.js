@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import {Modal, Form, Input} from 'antd'
 import inventoryData from '../utils/inventoryData'
 import InventoryTable from '../elements/InventoryTable'
+import StructureContext from '../context/StructureContext'
 
 const Inventory = () => {
   const [inventories, setInventories] = useState([])
@@ -9,16 +10,17 @@ const Inventory = () => {
   const [currentItem, setCurrentItem] = useState({})
   const [modalVisible, setModalVisible] = useState(false)
   const [form] = Form.useForm();
+  const value = useContext(StructureContext)
+  console.log(value)
+
   let itemName = Object.entries(currentItem).length ? currentItem.name : ''
   let itemQuantity = Object.entries(currentItem).length ? currentItem.quantity : ''
   
+
   useEffect(() => {
     setInventories(inventoryData) // Update inventory state, NOTE: This data will be grabbed from database 
 
-  }, [])
-
-  useEffect(() => {
-  }, [currentItem])
+  }, []) 
   
   const layout = {
     labelCol: {
@@ -54,7 +56,8 @@ const Inventory = () => {
       let newInventory = [...inventories]
       newInventory[currentIndex] = {name:newName, quantity: newQuantity}
       setInventories(newInventory)
-      form.resetFields()
+      console.log(newName)
+      console.log(newQuantity)
       
     })
     .catch(info => console.log('Validate Failed', info))
