@@ -7,11 +7,10 @@ import LoadingActiveJob from '../elements/LoadingActiveJob'
 const ALL_TEAMLEADER = gql`
   query getAllTeamLeaders{
     getAllTeamLeaders{
-      #id
+      id
       name
       phone
-      #email
-      #photos
+      email
     }
   }
 `

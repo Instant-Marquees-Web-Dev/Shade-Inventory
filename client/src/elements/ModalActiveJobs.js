@@ -2,7 +2,7 @@ import React from "react";
 import dayjs from "dayjs";
 import { Modal } from "antd";
 
-const ModalActiveJobs = ({ modal, handleOk, handleCancel, data, phone }) => {
+const ModalActiveJobs = ({ modal, handleOk, handleCancel, data, phone, teamLeaderID }) => {
   const [structure] = data.structures;
 
   return (

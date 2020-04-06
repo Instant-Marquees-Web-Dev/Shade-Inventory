@@ -13,10 +13,11 @@ const initialState = {
 }
 
 const ADD_TEAMLEADER = gql`
-mutation addTeamLeader($name: String!, $phone: String!){
-  addTeamLeader(name:$name, phone:$phone){
+mutation addTeamLeader($name: String!, $phone: String!, $email: String!){
+  addTeamLeader(name:$name, phone:$phone, email:$email){
     name
     phone
+    email
   }
 }
 `
@@ -25,7 +26,7 @@ const TeamLeaderTable = ({teamleader, ALL_TEAMLEADER}) => {
   const [isModalOpen, toggleModal] = useModal(false)
   const [teamLeader, setTeamLeader] = useState(initialState)
 
-  const { name, phone, email } = teamLeader
+  const { id, name, phone, email } = teamLeader
 
   const [addTeamLeader] = useMutation(
     ADD_TEAMLEADER,
@@ -42,18 +43,19 @@ const TeamLeaderTable = ({teamleader, ALL_TEAMLEADER}) => {
   )
 
   const handleOk = () => {
-    const VALIDATE_INPUT = name.trim().length > 1 && phone.trim().length > 1
+    const VALIDATE_INPUT = name.trim().length > 1 && phone.trim().length > 1 && email.trim().length > 1
     if(VALIDATE_INPUT){
       addTeamLeader({
-          variables: { name, phone },
+          variables: { name, phone, email },
           //  simulate the results of a mutation 
           //  and update the UI even before receiving a response from the server
           optimisticResponse: {  
               __typename: "Mutation",
               addTeamLeader: {
-                  // id: "2381094810931",
+                  id: "dsad13213",
                   name,
                   phone,
+                  email,
                   __typename: "TeamLeader"
                 }
               }
@@ -100,8 +102,8 @@ const TeamLeaderTable = ({teamleader, ALL_TEAMLEADER}) => {
                       </tr>
                       </thead>
                       <tbody className="bg-white">
-                      {teamleader.map(({name, phone}, index) => (
-                        <tr key={index}>
+                      {teamleader.map(({id, name, phone, email}) => (
+                        <tr key={id}>
                           <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                           <div className="flex items-center ">
                               <div className="flex-shrink-0 h-10 w-10">
@@ -116,7 +118,7 @@ const TeamLeaderTable = ({teamleader, ALL_TEAMLEADER}) => {
                           <div className="text-sm leading-5 text-gray-900">{phone}</div>
                           </td>
                           <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                          <div className="text-sm leading-5 text-gray-900">Email</div>
+                          <div className="text-sm leading-5 text-gray-900">{email}</div>
                           </td>
                           <td className="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
                           <a href="#" className="text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline"><RightOutlined /></a>
