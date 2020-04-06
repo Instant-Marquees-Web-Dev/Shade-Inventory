@@ -26,6 +26,7 @@ const GET_JOB_DATA = gql`
     }
 
     getAllTeamLeaders {
+      id
       name
       phone
     }
@@ -50,7 +51,7 @@ const ActiveJobs = () => {
   const phoneNumbers = data.getAllTeamLeaders;
 
   phoneNumbers.map(function(element) {
-    phoneDirectory.set(element.name, element.phone);
+    return phoneDirectory.set(element.name, element.phone, element.id);
   });
 
   return (
@@ -170,6 +171,7 @@ const ActiveJobs = () => {
                       phone={phoneDirectory}
                       handleOk={() => setModal(!modal)}
                       handleCancel={() => setModal(!modal)}
+                      teamLeaderID={phoneNumbers[job].id}
                     />
                   ) : null
                 }
