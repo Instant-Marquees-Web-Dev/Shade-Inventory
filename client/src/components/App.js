@@ -5,10 +5,10 @@ import { ApolloProvider } from "@apollo/react-hooks";
 import "../assets/styles/app.css";
 
 const cache = new InMemoryCache();
-const link = new HttpLink({ uri:"http://localhost:4000/graphql" })
+const link = new HttpLink({ uri: "http://localhost:4000/graphql" });
 const client = new ApolloClient({
   link,
-  cache
+  cache,
 });
 
 function App() {
