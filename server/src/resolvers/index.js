@@ -1,5 +1,5 @@
 import activeJob from "./activeJob";
-import teamLeaders from "./teamLeaders";
+import teamLeader from "./teamLeader";
 import structurePart from "./structurePart";
 
-export default [activeJob, teamLeaders, structurePart];
+export default [activeJob, teamLeader, structurePart];

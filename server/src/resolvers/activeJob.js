@@ -25,7 +25,9 @@ export default {
     },
 
     editSuburb: async (root, args, context) => {
-      const updatedJob = await ActiveJob.findByIdAndUpdate(args.id, args);
+      const updatedJob = await ActiveJob.findByIdAndUpdate(args.id, args,{
+        new: true,
+      });
       if (!updatedJob) {
         throw new Error("Error: Updated Job");
       }
@@ -33,7 +35,9 @@ export default {
     },
 
     editSetupDate: async (root, args, context) => {
-      const updatedJob = await ActiveJob.findByIdAndUpdate(args.id, args);
+      const updatedJob = await ActiveJob.findByIdAndUpdate(args.id, args),{
+        new: true,
+      };
       if (!updatedJob) {
         throw new Error("Error: Updated Job");
       }
@@ -41,7 +45,9 @@ export default {
     },
 
     editPulldownDate: async (root, args, context) => {
-      const updatedJob = await ActiveJob.findByIdAndUpdate(args.id, args);
+      const updatedJob = await ActiveJob.findByIdAndUpdate(args.id, args,{
+        new: true,
+      });
       if (!updatedJob) {
         throw new Error("Error: Updated Job");
       }
@@ -49,7 +55,9 @@ export default {
     },
 
     editTeamLeader: async (root, args, context) => {
-      const updatedJob = await ActiveJob.findByIdAndUpdate(args.id, args);
+      const updatedJob = await ActiveJob.findByIdAndUpdate(args.id, args,{
+        new: true,
+      });
       if (!updatedJob) {
         throw new Error("Error: Updated Job");
       }

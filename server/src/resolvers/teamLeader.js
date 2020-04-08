@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import TeamLeader from "../models/TeamLeaders";
+import TeamLeader from "../models/TeamLeader";
 
 export default {
   Query: {
@@ -36,7 +36,9 @@ export default {
     },
 
     editPhone: async (root, args, context) => {
-      const updated = await TeamLeader.findByIdAndUpdate(args.id, args);
+      const updated = await TeamLeader.findByIdAndUpdate(args.id, args, {
+        new: true,
+      });
       if (!updated) {
         throw new Error("Error: Updated phone number");
       }
@@ -44,7 +46,9 @@ export default {
     },
 
     editEmail: async (root, args, context) => {
-      const updated = await TeamLeader.findByIdAndUpdate(args.id, args);
+      const updated = await TeamLeader.findByIdAndUpdate(args.id, args, {
+        new: true,
+      });
       if (!updated) {
         throw new Error("Error: Updated Email");
       }
@@ -52,7 +56,9 @@ export default {
     },
 
     editName: async (root, args, context) => {
-      const updated = await TeamLeader.findByIdAndUpdate(args.id, args);
+      const updated = await TeamLeader.findByIdAndUpdate(args.id, args, {
+        new: true,
+      });
       if (!updated) {
         throw new Error("Error: Updated Name");
       }

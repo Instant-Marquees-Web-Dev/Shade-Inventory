@@ -32,7 +32,9 @@ export default {
     },
 
     editPartCount: async (root, args, context) => {
-      const updated = await StructurePart.findByIdAndUpdate(args.id, args);
+      const updated = await StructurePart.findByIdAndUpdate(args.id, args, {
+        new: true,
+      });
       if (!updated) {
         throw new Error("Error: Updating Part Count");
       }
@@ -40,7 +42,9 @@ export default {
     },
 
     editPartName: async (root, args, context) => {
-      const updated = await StructurePart.findByIdAndUpdate(args.id, args);
+      const updated = await StructurePart.findByIdAndUpdate(args.id, args, {
+        new: true,
+      });
       if (!updated) {
         throw new Error("Error: Updating part name");
       }
@@ -48,7 +52,9 @@ export default {
     },
 
     editPartSpecification: async (root, args, context) => {
-      const updated = await StructurePart.findByIdAndUpdate(args.id, args);
+      const updated = await StructurePart.findByIdAndUpdate(args.id, args, {
+        new: true,
+      });
       if (!updated) {
         throw new Error("Error: Updating part spec");
       }
