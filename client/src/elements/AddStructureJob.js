@@ -1,4 +1,5 @@
 import React from 'react'
+import TeamLeaderList from './TeamLeaderList'
 import { DatePicker } from 'antd'
 const { RangePicker } = DatePicker
 
@@ -23,14 +24,15 @@ const AddStructureJob = () => {
 
                     <div className="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">  {/* Boady Start */}
 
-                        <div className="sm:col-span-3">
+                        {/* <div className="sm:col-span-3">
                         <label htmlFor="team_leader" className="block text-sm font-medium leading-5 text-gray-700">
                             Team Leader
                         </label>
                         <div className="mt-1 rounded-md shadow-sm">
                             <input id="team_leader" className="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                         </div>
-                        </div>
+                        </div> */}
+                        <TeamLeaderList/>
 
                         <div className="sm:col-span-3">
                         <label htmlFor="suburb" className="block text-sm font-medium leading-5 text-gray-700">
@@ -102,7 +104,7 @@ const AddStructureJob = () => {
                         <select 
                         id="size" 
                         className="form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                        value="3"
+                        defaultValue="3"
                         >
                             <option value="3">3</option>
                             <option value="6">6</option>
@@ -125,7 +127,7 @@ const AddStructureJob = () => {
                             Type
                         </label>
                         <div className="mt-1 rounded-md shadow-sm">
-                        <select value="dome" id="type" className="form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                        <select defaultValue="dome" id="type" className="form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5">
                             <option value="dome">Dome</option>
                             <option value="apex">Apex</option>
                         </select>
