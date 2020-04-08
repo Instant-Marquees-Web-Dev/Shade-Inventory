@@ -6,7 +6,6 @@ import { Layout, } from "antd";
 import Navigation from './Navigation';
 import ActiveJobs from "./ActiveJobs";
 import AddStructure from "./AddStructure";
-import Inventory from './Inventory';
 import NewInventory from './NewInventory'
 import StructureContext from '../context/StructureContext'
 import TeamLeader from "./TeamLeader";
@@ -26,10 +25,8 @@ const Admin = () => {
           <div style={{ padding: 24, background: "#fff", minHeight: 360 }}>
               <StructureContext.Provider value={value}>
             <Router>
-              {/* <Dashboard path="/dashboard" /> */}
-                <ActiveJobs path="/activeJobs"/>
+                <ActiveJobs path="/"/>
                 <AddStructure path="/addStructure"/>
-                {/* <Inventory path="/inventory"/> */}
                 <NewInventory path="/inventory"/>
                 <TeamLeader path="/teamLeader"/>
             </Router>

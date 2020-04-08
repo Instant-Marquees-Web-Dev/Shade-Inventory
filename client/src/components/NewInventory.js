@@ -32,17 +32,7 @@ const NewInventory = () => {
   const { getAllStructureParts } = data || []
 
   const [editPartCount] = useMutation(
-    EDIT_STRUCTURE_COUNT,
-    // {
-    //   update(cache, { data: { editPartCount }}) {
-    //     const { getAllStructureParts } = cache.readQuery({ query: GET_STRUCTURE_PARTS })
-    //     console.log(getAllStructureParts)
-    //     cache.writeQuery({ 
-    //       query: GET_STRUCTURE_PARTS,
-    //       data: { getAllStructureParts: [...getAllStructureParts, editPartCount]}
-    //     })
-    //   }
-    // }
+    EDIT_STRUCTURE_COUNT
   )
 
   const handleOk = (id, oldCount) => {
@@ -78,7 +68,8 @@ const NewInventory = () => {
   }
 
   return (
-    <div>
+    <>
+      <InventoryTable inventories={getAllStructureParts} handleEdit={handleEdit}/>
     {
       isModal && 
       <ModalInventory 
@@ -88,8 +79,7 @@ const NewInventory = () => {
         currentItem={currentItem}
         />
     }
-      <InventoryTable inventories={getAllStructureParts} handleEdit={handleEdit}/>
-    </div>
+    </>
   )
 }
 

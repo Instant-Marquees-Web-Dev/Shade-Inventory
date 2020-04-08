@@ -40,7 +40,7 @@ const Navigation = () => {
                         </span>
                     }>
                         <Menu.Item key="activeJobs">
-                        <Link to="/activeJobs">
+                        <Link to="/">
                             Active Jobs
                         </Link>
                         </Menu.Item>
