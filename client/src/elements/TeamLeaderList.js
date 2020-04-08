@@ -13,12 +13,14 @@ const ALL_TEAMLEADER = gql`
   }
 `
 
-const TeamLeaderList = () => {
+const TeamLeaderList = ({ updateField }) => {
   const {loading, error, data} = useQuery(ALL_TEAMLEADER);
   
   if (loading) {return null}
 
-  if (error) {return null}
+  if (error) {
+    return <option>Error loading...</option>
+  }
 
   const { getAllTeamLeaders } = data || ""
   return (
@@ -29,8 +31,12 @@ const TeamLeaderList = () => {
       <div className="mt-1 rounded-md shadow-sm">
           <select 
           id="teamLeader" 
+          name="teamLeader"
+          onChange={updateField}
+          defaultValue=""
           className="form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
           >
+          <option value="">Select Team Leader</option>
           {
             getAllTeamLeaders.map(({id, name}) => (
             <option key={id} value={name}>{name}</option>
