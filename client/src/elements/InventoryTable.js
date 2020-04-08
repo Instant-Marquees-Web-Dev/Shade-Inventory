@@ -19,16 +19,26 @@ const InventoryTable = ({inventories, handleEdit}) => {
               </tr>
             </thead>
             <tbody className="bg-white">
-              {inventories.map(({name, quantity}, i) => (
+              {inventories.map(({id, name, specification, count}, i) => (
                 <tr key={i}>
                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium text-gray-900">
-                  {name}
+                  <div className="text-sm leading-5 font-medium text-gray-900">
+                    {name}
+                  </div>
+                  <div className="text-sm leading-5 text-gray-500">
+                    {specification}
+                  </div>
                 </td>
                 <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-900">
-                  {quantity}
+                  {count}
                 </td>
                 <td className="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                  <button className="text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline" onClick={()=> handleEdit(i)}>Edit</button>
+                  <button 
+                    className="text-indigo-600 hover:text-indigo-900 focus:outline-none focus:underline" 
+                    onClick={() => handleEdit(i)}
+                  >
+                  Edit
+                  </button>
                 </td>
               </tr>
               ))}

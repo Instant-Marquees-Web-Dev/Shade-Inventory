@@ -7,6 +7,7 @@ import Navigation from './Navigation';
 import ActiveJobs from "./ActiveJobs";
 import AddStructure from "./AddStructure";
 import Inventory from './Inventory';
+import NewInventory from './NewInventory'
 import StructureContext from '../context/StructureContext'
 import TeamLeader from "./TeamLeader";
 
@@ -28,7 +29,8 @@ const Admin = () => {
               {/* <Dashboard path="/dashboard" /> */}
                 <ActiveJobs path="/activeJobs"/>
                 <AddStructure path="/addStructure"/>
-                <Inventory path="/inventory"/>
+                {/* <Inventory path="/inventory"/> */}
+                <NewInventory path="/inventory"/>
                 <TeamLeader path="/teamLeader"/>
             </Router>
               </StructureContext.Provider>
