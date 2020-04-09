@@ -9,6 +9,7 @@ import AddStructure from "./AddStructure";
 import NewInventory from './NewInventory'
 import StructureContext from '../context/StructureContext'
 import TeamLeader from "./TeamLeader";
+import Page404 from '../elements/Page404'
 
 const { Footer, Content } = Layout;
 
@@ -29,6 +30,7 @@ const Admin = () => {
                 <AddStructure path="/addStructure"/>
                 <NewInventory path="/inventory"/>
                 <TeamLeader path="/teamLeader"/>
+                <Page404 default/>
             </Router>
               </StructureContext.Provider>
           </div>
