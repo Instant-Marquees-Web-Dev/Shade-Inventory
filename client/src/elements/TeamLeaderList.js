@@ -13,7 +13,7 @@ const ALL_TEAMLEADER = gql`
   }
 `
 
-const TeamLeaderList = ({ updateField }) => {
+const TeamLeaderList = ({ teamLeader, updateField }) => {
   const {loading, error, data} = useQuery(ALL_TEAMLEADER);
   
   if (loading) {return null}
@@ -33,7 +33,7 @@ const TeamLeaderList = ({ updateField }) => {
           id="teamLeader" 
           name="teamLeader"
           onChange={updateField}
-          defaultValue=""
+          value={teamLeader}
           className="form-select block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
           >
           <option value="">Select Team Leader</option>

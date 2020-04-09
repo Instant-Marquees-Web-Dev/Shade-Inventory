@@ -1,9 +1,11 @@
 import React from 'react'
+import moment from 'moment'
 import TeamLeaderList from './TeamLeaderList'
 import { DatePicker } from 'antd'
 const { RangePicker } = DatePicker
 
-const AddStructureForm = ({ job, setJob, updateField }) => {
+const AddStructureForm = ({ job, setJob, updateField, resetForm, handleSubmit }) => {
+  const DATE_FORMAT = 'MMMM D, h:mm A'
   const {
     teamLeader,
       suburb,
@@ -13,11 +15,11 @@ const AddStructureForm = ({ job, setJob, updateField }) => {
       size,
       length,
       structureType,
-      notes,
+      Notes,
       phone
     } = job
 
-    const handleDateChange = (value, dateString) => {
+    const handleDateChange = (value, dateString) => {   
       const [setupDate, pulldownDate] = dateString
       setJob({ 
         ...job,
@@ -25,19 +27,6 @@ const AddStructureForm = ({ job, setJob, updateField }) => {
         pulldownDate
       })
     }
-
-    const handleCancel = () => setJob({
-      teamLeader: '',
-        suburb: '',
-        address: '',
-        setupDate: ' ',
-        pulldownDate: ' ',
-        size: '',
-        length: '',
-        structureType: '',
-        notes: '',
-        phone: ''
-    })
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 ">
@@ -57,7 +46,7 @@ const AddStructureForm = ({ job, setJob, updateField }) => {
                 </div> {/* Heading END*/}
 
                 <div className="mt-6 grid grid-cols-1 row-gap-6 col-gap-4 sm:grid-cols-6">  {/* Boady Start */}
-                    <TeamLeaderList updateField={updateField}/>
+                    <TeamLeaderList teamLeader={teamLeader} updateField={updateField}/>
 
                     <div className="sm:col-span-3">
                         <label htmlFor="suburb" className="block text-sm font-medium leading-5 text-gray-700">
@@ -83,15 +72,12 @@ const AddStructureForm = ({ job, setJob, updateField }) => {
                         <div className="mt-1 rounded-md shadow-sm">
                             <RangePicker
                                 showTime={{ format: 'h:mm a' }}
-                                format="MMMM D, h:mm A"
-                                showTime
+                                format={DATE_FORMAT}
                                 size={"large"}
                                 style={{
                                     borderRadius:"0.375rem",
                                 }}
-                                // value={[setupDate,pulldownDate]}
                                 onChange={handleDateChange}
-                                
                             />
                         </div>
                     </div>
@@ -107,6 +93,7 @@ const AddStructureForm = ({ job, setJob, updateField }) => {
                         name="phone" 
                         value={phone}
                         onChange={updateField}
+                        required
                         className="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"/>
                         </div>
                         </div>
@@ -121,6 +108,7 @@ const AddStructureForm = ({ job, setJob, updateField }) => {
                                 name="address" 
                                 value={address}
                                 onChange={updateField}
+                                required
                                 className="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                         </div>
                     </div>
@@ -174,6 +162,7 @@ const AddStructureForm = ({ job, setJob, updateField }) => {
                                 step="3"
                                 value={length}
                                 onChange={updateField} 
+                                required
                                 className="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                         </div>
                     </div>
@@ -204,9 +193,10 @@ const AddStructureForm = ({ job, setJob, updateField }) => {
                             <textarea 
                                 id="about" 
                                 rows="3" 
-                                name="notes" 
-                                value={notes}
+                                name="Notes" 
+                                value={Notes}
                                 onChange={updateField}
+                                required
                                 className="form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"></textarea>
                         </div>
                         <p className="mt-2 text-sm text-gray-500">Write a note about the job if needed</p>
@@ -222,13 +212,16 @@ const AddStructureForm = ({ job, setJob, updateField }) => {
                     <span className="inline-flex rounded-md shadow-sm">
                         <button 
                             type="button" 
-                            onClick={handleCancel}
+                            onClick={resetForm}
                             className="py-2 px-4 border border-gray-300 rounded-md text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out">
                         Cancel
                         </button>
                     </span>
                     <span className="ml-3 inline-flex rounded-md shadow-sm">
-                        <button type="submit" className="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+                        <button 
+                            type="submit" 
+                            onClick={handleSubmit}
+                            className="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
                         Save
                         </button>
                     </span>

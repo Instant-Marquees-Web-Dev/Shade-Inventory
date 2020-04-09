@@ -3,35 +3,10 @@ import { RightOutlined } from "@ant-design/icons";
 import { Avatar } from 'antd'
 import dayjs from "dayjs";
 import { useQuery } from "@apollo/react-hooks";
-import { gql } from "apollo-boost";
-
+import {  GET_JOB_DATA } from '../queries'
 import LoadingActiveJob from "../elements/LoadingActiveJob";
 import ModalActiveJobs from "../elements/ModalActiveJobs";
 
-const GET_JOB_DATA = gql`
-  {
-    getActiveJobs {
-      id
-      suburb
-      address
-      setupDate
-      pulldownDate
-      teamLeader
-      structures {
-        size
-        length
-        structureType
-        Notes
-      }
-    }
-
-    getAllTeamLeaders {
-      id
-      name
-      phone
-    }
-  }
-`;
 let phoneDirectory = new Map();
 
 const ActiveJobs = () => {
