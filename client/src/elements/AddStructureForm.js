@@ -1,5 +1,4 @@
 import React from 'react'
-import moment from 'moment'
 import TeamLeaderList from './TeamLeaderList'
 import { DatePicker } from 'antd'
 const { RangePicker } = DatePicker
