@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import typeDefs from "./typeDefs";
 import resolvers from "./resolvers";
 import cors from "cors";
+require('dotenv').config()
 
 const startServer = async () => {
   const app = express();
@@ -17,7 +18,7 @@ const startServer = async () => {
 
   try {
     await mongoose.connect(
-      "mongodb+srv://shade:shade@cluster0-gzrz8.mongodb.net/test?retryWrites=true&w=majority",
+      process.env.MONGODB_URL,
       { useNewUrlParser: true, useUnifiedTopology: true },
       console.log("Connected to shade@cluster0-gzrz8.mongodb.net")
     );
