@@ -23,8 +23,8 @@ const Admin = () => {
       <Navigation/>
       <Layout>
         <Content style={{ margin: "16px" }}>
-          <div style={{ padding: 24, background: "#fff", minHeight: 360 }}>
-              <StructureContext.Provider value={value}>
+          <div style={{ padding: 24, background: "#fff", minHeight: 460 }}>
+              {/* <StructureContext.Provider value={value}> */}
             <Router>
                 <ActiveJobs path="/"/>
                 <AddStructure path="/addStructure"/>
@@ -32,7 +32,7 @@ const Admin = () => {
                 <TeamLeader path="/teamLeader"/>
                 <Page404 default/>
             </Router>
-              </StructureContext.Provider>
+              {/* </StructureContext.Provider> */}
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>
