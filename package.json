@@ -6,6 +6,6 @@
     "concurrently": "^5.1.0"
   },
   "scripts": {
-    "start": "concurrently \"cd server && yarn start\" \"cd client && yarn start\""
+    "start": "concurrently \"cd server && yarn && yarn start\" \"cd client && yarn && yarn start\""
   }
 }
